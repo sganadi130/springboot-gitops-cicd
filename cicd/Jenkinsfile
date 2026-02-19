@@ -2,9 +2,9 @@ pipeline {
     agent none
 
     environment {
-        SONAR_URL   = "http://172.31.45.141:9000"
+        SONAR_URL    = "http://172.31.45.141:9000"
         DOCKER_IMAGE = "9916633130/ultimate-cicd:${BUILD_NUMBER}"
-        GIT_REPO_NAME = "Jenkins-Zero-To-Hero"
+        GIT_REPO_NAME = "springboot-gitops-cicd"
         GIT_USER_NAME = "sganadi130"
     }
 
@@ -25,7 +25,7 @@ pipeline {
             }
             steps {
                 sh '''
-                    cd java-maven-sonar-argocd-helm-k8s/spring-boot-app
+                    cd app
                     mvn clean package
                 '''
             }
@@ -40,7 +40,7 @@ pipeline {
             steps {
                 withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
                     sh '''
-                        cd java-maven-sonar-argocd-helm-k8s/spring-boot-app
+                        cd app
                         mvn sonar:sonar \
                           -Dsonar.token=$SONAR_AUTH_TOKEN \
                           -Dsonar.host.url=$SONAR_URL
@@ -53,7 +53,7 @@ pipeline {
             agent any
             steps {
                 sh '''
-                    cd java-maven-sonar-argocd-helm-k8s/spring-boot-app
+                    cd app
                     docker build -t $DOCKER_IMAGE .
                 '''
             }
@@ -87,9 +87,9 @@ pipeline {
                         git config user.name "sganadi130"
 
                         sed -i "s|9916633130/ultimate-cicd:.*|${DOCKER_IMAGE}|g" \
-                        java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
+                        k8s/deployment.yml
 
-                        git add java-maven-sonar-argocd-helm-k8s/spring-boot-app-manifests/deployment.yml
+                        git add k8s/deployment.yml
 
                         if git diff --cached --quiet; then
                             echo "No changes to commit."
@@ -100,3 +100,6 @@ pipeline {
                     '''
                 }
             }
+        }
+    }
+}
