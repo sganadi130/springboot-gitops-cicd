@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.sganadi</groupId>
-    <artifactId>spring-boot-demo</artifactId>
+    <artifactId>springboot-gitops-cicd</artifactId>
     <version>1.0</version>
 
     <name>spring-boot-demo</name>
