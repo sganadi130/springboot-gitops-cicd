@@ -87,9 +87,9 @@ pipeline {
                         git config user.name "sganadi130"
 
                         sed -i "s|9916633130/ultimate-cicd:.*|${DOCKER_IMAGE}|g" \
-                        k8s/deployment.yml
+                        k8s/deployment.yaml
 
-                        git add k8s/deployment.yml
+                        git add k8s/deployment.yaml
 
                         if git diff --cached --quiet; then
                             echo "No changes to commit."
