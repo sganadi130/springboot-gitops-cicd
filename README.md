@@ -231,22 +231,20 @@ Configured Jenkins credentials:
 
 # 📂 Project Structure
 
-springboot-gitops-cicd
-│
+```bash
+springboot-gitops-cicd/
 ├── README.md
-├── app
-│ ├── Dockerfile
-│ ├── pom.xml
-│ ├── src/
-│ └── target/
-│
-├── cicd
-│ └── Jenkinsfile
-│
-└── k8s
-├── deployment.yaml
-└── service.yaml
-
+├── app/
+│   ├── Dockerfile
+│   ├── pom.xml
+│   ├── src/
+│   └── target/
+├── cicd/
+│   └── Jenkinsfile
+└── k8s/
+    ├── deployment.yaml
+    └── service.yaml
+```
 
 ---
 
