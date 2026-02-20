@@ -332,4 +332,8 @@ Not implemented:
 
 # 👨‍💻 Author
 
-Built as a hands-on DevOps learning project to deeply understand CI/CD pipelines, GitOps architecture, reconciliation behavior, and deployment strategies.
+I built this project to gain hands-on experience with CI/CD and GitOps beyond theoretical understanding.
+
+During implementation, I encountered real-world challenges including Docker daemon permission issues, SonarQube connectivity problems, ArgoCD synchronization failures, and Minikube CRD conflicts.
+
+Resolving these helped me understand Kubernetes reconciliation loops, deployment failure behavior, and the practical separation of CI and CD responsibilities.
